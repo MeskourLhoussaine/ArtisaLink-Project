@@ -40,6 +40,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userRepository.findAll();
+        System.out.println("users: " + users);
         return ResponseEntity.ok(users);
     }
 }
