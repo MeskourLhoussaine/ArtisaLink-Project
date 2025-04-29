@@ -1,8 +1,7 @@
 package ma.artisanat.profile_service.service.profileServiceImpl;
 
 
-
-
+import jakarta.transaction.Transactional;
 import ma.artisanat.profile_service.client.UserClient;
 import ma.artisanat.profile_service.dto.ProfileDTO;
 import ma.artisanat.profile_service.dto.UserDTO;
@@ -28,21 +27,40 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
+    @Transactional
     public ProfileDTO createProfile(ProfileDTO profileDTO) {
-        // Conversion DTO -> Entity
+        // 1. Récupérer l'utilisateur par son ID
+        Long userId = profileDTO.getUserId();
+        UserDTO userDTO = userClient.getUserById(userId);
+//System.out.println(userDTO);
+        if (userDTO == null) {
+            throw new RuntimeException("Utilisateur avec ID " + userId + " introuvable.");
+        }
+
+        // 2. Créer l'entité Profile
         Profile profile = new Profile();
+        profile.setUserId(userId);
         profile.setDescription(profileDTO.getDescription());
         profile.setImageUrl(profileDTO.getImageUrl());
         profile.setRating(profileDTO.getRating());
 
-        // Lier le profil à un utilisateur via l'ID
-        UserDTO userDTO = userClient.getUserById(profileDTO.getUserId());
-        profile.setUserId(userDTO.getId());  // Stocker l'ID de l'utilisateur dans le profil
+        // services n'est pas géré ici (on crée juste un profil sans services pour le moment)
 
-        profileRepository.save(profile);
+        // 3. Sauvegarder
+        Profile savedProfile = profileRepository.save(profile);
 
-        return profileDTO;
+        // 4. Transformer Entity -> DTO pour la réponse
+        ProfileDTO result = new ProfileDTO();
+        result.setId(savedProfile.getId());
+        result.setUserId(savedProfile.getUserId());
+        result.setDescription(savedProfile.getDescription());
+        result.setImageUrl(savedProfile.getImageUrl());
+        result.setRating(savedProfile.getRating());
+        // services non retournés ici (optionnel)
+
+        return result;
     }
+
 
     @Override
     public ProfileDTO getProfileById(Long id) {
