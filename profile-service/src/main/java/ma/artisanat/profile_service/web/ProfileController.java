@@ -31,7 +31,7 @@ public class ProfileController {
     }
 
     // Récupérer un profil par ID
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<ProfileDTO> getProfileById(@PathVariable Long id) {
         ProfileDTO profileDTO = profileService.getProfileById(id);
         return ResponseEntity.ok(profileDTO);
