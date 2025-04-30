@@ -6,9 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Builder
 @Table(name = "\"user\"")
 public class User {
@@ -19,6 +17,37 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String firstName;
+
+    public User(Long id, String username, String email, String password, String firstName, String lastName) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public User() {
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    private String lastName;
 
 
     public String getEmail() {

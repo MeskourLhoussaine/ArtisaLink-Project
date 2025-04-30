@@ -3,6 +3,7 @@ package ma.artisanat.profile_service.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -17,6 +18,26 @@ public class ProfileDTO {
     private String imageUrl;
     private double rating;
     private Long userId;
+
+    private String firstname; // firstname de l'utilisateur
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    private String lastname; // firstname de l'utilisateur
 
     public ProfileDTO() {
     }
@@ -67,12 +88,16 @@ public class ProfileDTO {
             @JsonProperty("description") String description,
             @JsonProperty("imageUrl") String imageUrl,
             @JsonProperty("rating") double rating,
-            @JsonProperty("userId") Long userId) {
+            @JsonProperty("userId") Long userId,
+    @JsonProperty("lastname") String lastname,
+            @JsonProperty("firstname") String firstname){
         this.id = id;
         this.description = description;
         this.imageUrl = imageUrl;
         this.rating = rating;
         this.userId = userId;
+        this.lastname = lastname;
+        this.firstname = firstname;
     }
 
     // Constructeur qui prend un Profile en argument pour convertir un Profile en ProfileDTO
@@ -82,6 +107,8 @@ public class ProfileDTO {
         this.imageUrl = profile.getImageUrl();
         this.rating = profile.getRating();
         this.userId = profile.getUserId(); // Assurez-vous que cela correspond à la classe Profile
+        this.lastname = profile.getLastname();
+        this.firstname = profile.getFirstname();
     }
 
   // L'ID de l'utilisateur associé

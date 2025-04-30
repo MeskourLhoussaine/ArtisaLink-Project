@@ -25,6 +25,14 @@ public class Profile {
     @Column(name = "user_id")
     private Long userId; // ID de l'utilisateur
 
+
+
+
+    @Column(name = "first_name")
+    private String firstname; // firstname de l'utilisateur
+    @Column(name = "last_name")
+    private String lastname; // firstname de l'utilisateur
+
     public Profile() {
 
     }
@@ -77,12 +85,30 @@ public class Profile {
         this.description = description;
     }
 
-    public Profile(Long id, Long userId, List<Service> services, double rating, String imageUrl, String description) {
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public Profile(Long id, Long userId, List<Service> services, double rating, String imageUrl, String description,String lastname,String firstname) {
         this.id = id;
         this.userId = userId;
         this.services = services;
         this.rating = rating;
         this.imageUrl = imageUrl;
         this.description = description;
+        this.lastname=lastname;
+        this.firstname=firstname;
     }
 }

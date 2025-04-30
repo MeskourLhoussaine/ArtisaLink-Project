@@ -31,6 +31,8 @@ public class ProfileServiceImpl implements ProfileService {
     public ProfileDTO createProfile(ProfileDTO profileDTO) {
         // 1. Récupérer l'utilisateur par son ID
         Long userId = profileDTO.getUserId();
+        String firstname=profileDTO.getFirstname();
+        String lastname=profileDTO.getLastname();
         UserDTO userDTO = userClient.getUserById(userId);
 //System.out.println(userDTO);
         if (userDTO == null) {
@@ -40,6 +42,8 @@ public class ProfileServiceImpl implements ProfileService {
         // 2. Créer l'entité Profile
         Profile profile = new Profile();
         profile.setUserId(userId);
+        profile.setFirstname(firstname);
+        profile.setLastname(lastname);
         profile.setDescription(profileDTO.getDescription());
         profile.setImageUrl(profileDTO.getImageUrl());
         profile.setRating(profileDTO.getRating());
@@ -53,6 +57,8 @@ public class ProfileServiceImpl implements ProfileService {
         ProfileDTO result = new ProfileDTO();
         result.setId(savedProfile.getId());
         result.setUserId(savedProfile.getUserId());
+        result.setFirstname(savedProfile.getFirstname());
+        result.setLastname(savedProfile.getLastname());
         result.setDescription(savedProfile.getDescription());
         result.setImageUrl(savedProfile.getImageUrl());
         result.setRating(savedProfile.getRating());
@@ -79,15 +85,26 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public ProfileDTO updateProfile(Long id, ProfileDTO profileDTO) {
-        Profile profile = profileRepository.findById(id).orElseThrow(() -> new RuntimeException("Profile not found"));
+        Profile profile = profileRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Profile not found"));
+
         profile.setDescription(profileDTO.getDescription());
         profile.setImageUrl(profileDTO.getImageUrl());
         profile.setRating(profileDTO.getRating());
+        profile.setFirstname(profileDTO.getFirstname());
+        profile.setLastname(profileDTO.getLastname());
 
         profileRepository.save(profile);
 
+        // 👉 Mettre à jour les noms dans user-service
+        UserDTO userDTO = new UserDTO();
+        userDTO.setFirstName(profileDTO.getFirstname());
+        userDTO.setLastName(profileDTO.getLastname());
+        userClient.updateUserNames(profile.getUserId(), userDTO);
+
         return new ProfileDTO(profile);
     }
+
 
     @Override
     public void deleteProfile(Long id) {

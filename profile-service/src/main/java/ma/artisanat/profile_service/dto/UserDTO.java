@@ -5,6 +5,38 @@ import lombok.Data;
 
 @Data
 public class UserDTO {
+
+    private Long id;
+    private String username;
+    private String email;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    private String password;
+    private String firstName;
+    private String lastName;
     public Long getId() {
         return id;
     }
@@ -29,16 +61,15 @@ public class UserDTO {
         this.username = username;
     }
 
-    private Long id;
-    private String username;
-    private String email;
 
-    public UserDTO(Long id, String email, String username) {
+    public UserDTO(Long id, String username, String email, String password, String firstName, String lastName) {
         this.id = id;
-        this.email = email;
         this.username = username;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
-
 
     public UserDTO() {
     }

@@ -52,4 +52,17 @@ public class UserController {
         System.out.println("users: " + users);
         return ResponseEntity.ok(users);
     }
+
+    @PutMapping("/users/{id}/names")
+    public ResponseEntity<Void> updateUserNames(@PathVariable Long id, @RequestBody User updatedUser) {
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setFirstName(updatedUser.getFirstName());
+        user.setLastName(updatedUser.getLastName());
+
+        userRepository.save(user);
+        return ResponseEntity.ok().build();
+    }
+
+
 }
