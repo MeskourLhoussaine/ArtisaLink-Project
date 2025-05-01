@@ -2,7 +2,7 @@ package ma.artisanat.profile_service.service.profileServiceImpl;
 
 
 import jakarta.transaction.Transactional;
-import ma.artisanat.profile_service.client.PostClient;
+import ma.artisanat.profile_service.client.UserClient;
 import ma.artisanat.profile_service.dto.ProfileDTO;
 import ma.artisanat.profile_service.dto.UserDTO;
 import ma.artisanat.profile_service.model.Profile;
@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
 public class ProfileServiceImpl implements ProfileService {
 
     private final ProfileRepository profileRepository;
-    private final PostClient userClient;
+    private final UserClient userClient;
 
     @Autowired
-    public ProfileServiceImpl(ProfileRepository profileRepository, PostClient userClient) {
+    public ProfileServiceImpl(ProfileRepository profileRepository, UserClient userClient) {
         this.profileRepository = profileRepository;
         this.userClient = userClient;
     }

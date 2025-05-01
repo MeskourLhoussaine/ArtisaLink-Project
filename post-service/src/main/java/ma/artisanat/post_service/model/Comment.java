@@ -11,18 +11,34 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long postId;
+
     private Long userId;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    @ManyToOne
+    @JoinColumn(name = "post_id", nullable = false)
+    private Post post;
 
-    public String getContent() {
-        return content;
+
+
+    public Comment() {
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     public LocalDateTime getUpdatedAt() {
@@ -41,6 +57,14 @@ public class Comment {
         this.createdAt = createdAt;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public Long getUserId() {
         return userId;
     }
@@ -49,31 +73,14 @@ public class Comment {
         this.userId = userId;
     }
 
-    public Long getPostId() {
-        return postId;
-    }
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
-    }
 
-    public Long getId() {
-        return id;
-    }
+    public Comment( Long userId, String content, LocalDateTime createdAt, LocalDateTime updatedAt, Post post) {
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Comment(Long id, LocalDateTime updatedAt, LocalDateTime createdAt, String content, Long userId, Long postId) {
-        this.id = id;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
-        this.content = content;
         this.userId = userId;
-        this.postId = postId;
-    }
-
-    public Comment() {
+        this.content = content;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.post = post;
     }
 }

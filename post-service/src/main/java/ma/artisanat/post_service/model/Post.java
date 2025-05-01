@@ -4,6 +4,9 @@ package ma.artisanat.post_service.model;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "posts")
 public class Post {
@@ -16,6 +19,13 @@ public class Post {
     private String videoUrl;
     private Long userId;
     private LocalDateTime createdAt;
+    // Relations
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Like> likes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
 
     public Long getId() {
         return id;
