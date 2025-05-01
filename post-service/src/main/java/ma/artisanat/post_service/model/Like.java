@@ -20,6 +20,7 @@ public class Like {
 
     private Long userId;
     private LocalDateTime createdAt;
+
     @ManyToOne
     @JoinColumn(name = "post_id", nullable = false)
     private Post post;

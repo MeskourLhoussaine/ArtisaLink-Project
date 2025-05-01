@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface CommentServices {
     // Comment
-    Comment addComment(Comment comment);
+
+    Comment addComment(Long postId, Long userId, String content);
+
     List<Comment> getCommentsByPostId(Long postId);
     Comment getAllCommentsByPostId(Long postId);
     Comment updateComment(Comment comment);
