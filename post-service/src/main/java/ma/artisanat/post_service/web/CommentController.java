@@ -5,6 +5,7 @@ package ma.artisanat.post_service.web;
 import ma.artisanat.post_service.model.Comment;
 import ma.artisanat.post_service.repository.CommentRepository;
 import ma.artisanat.post_service.service.CommentServices;
+import ma.artisanat.post_service.service.servicesImpl.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,8 @@ public class CommentController {
     @Autowired
     private CommentServices commentServices;
     @Autowired
+    private CommentServiceImpl commentServicesImpl;
+    @Autowired
     private CommentRepository commentRepository;
 
     // Ajouter un commentaire
@@ -25,14 +28,14 @@ public class CommentController {
             @RequestParam Long postId,
             @RequestParam Long userId,
             @RequestParam String content) {
-        return commentServices.addComment(postId, userId, content);
+        return commentServicesImpl.addComment(postId, userId, content);
     }
 
 
     // Récupérer les commentaires d’un post
     @GetMapping("/post/{postId}")
     public List<Comment> getCommentsByPostId(@PathVariable Long postId) {
-        return commentServices.getCommentsByPostId(postId);
+        return commentServicesImpl.getCommentsByPostId(postId);
     }
  /*   @GetMapping("/findALL")
     public List<Comment> getAllComments() {
@@ -42,7 +45,7 @@ public class CommentController {
     // Modifier un commentaire
     @PutMapping("/update")
     public Comment updateComment(@RequestBody Comment comment) {
-        return commentServices.updateComment(comment);
+        return commentServicesImpl.updateComment(comment);
     }
 
     // Supprimer un commentaire
