@@ -1,62 +1,53 @@
 package ma.artisanat.job_service.dto;
 
+import lombok.*;
+import ma.artisanat.job_service.model.Job;
+import ma.artisanat.job_service.enums.JobStatus;
 
-import lombok.Data;
+import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
+ @Setter
 public class JobDto {
+
     private Long id;
     private String title;
     private String description;
     private String location;
     private Long userId;
-    private UserDto user;
+    private Long profileId;
+    private JobStatus status; //  Enum au lieu de String
+    private LocalDateTime postedAt;
+    private UserDto user; //Informations sur l’utilisateur (via Feign Client)
 
-    public Long getId() {
-        return id;
+    // Méthode pratique pour convertir un Job → JobDto
+    public static JobDto fromEntity(Job job) {
+        return JobDto.builder()
+                .id(job.getId())
+                .title(job.getTitle())
+                .description(job.getDescription())
+                .location(null) // tu peux l’ajouter plus tard dans l’entité Job si besoin
+                .userId(job.getPostedByUserId())
+
+                .status(job.getStatus())
+                .postedAt(job.getPostedAt())
+                .build();
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    //  Et inversement : JobDto → Job (utile pour création/mise à jour)
+    public Job toEntity() {
+        return Job.builder()
+                .id(this.id)
+                .title(this.title)
+                .description(this.description)
+                .postedByUserId(this.userId)
 
-    public UserDto getUser() {
-        return user;
-    }
-
-    public void setUser(UserDto user) {
-        this.user = user;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+                .status(this.status)
+                .postedAt(this.postedAt)
+                .build();
     }
 }

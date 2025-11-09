@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface JobRepository extends JpaRepository<Job, Long> {
     List<Job> findByPostedByUserId(Long userId);
+   // List<Job> findByProfileId(Long profileId); // relation avec le profil
 }
