@@ -26,6 +26,9 @@ public class UserController {
         return userService.register(user);
     }
 
+
+
+
     @GetMapping("/username/{username}")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
         User user = userService.getByUsername(username);
