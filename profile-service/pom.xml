@@ -35,21 +35,22 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-<!-- MAPPER-->
+		
+		<!-- MAPPER - Versions compatibles avec Java 21 -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>1.5.2.Final</version>
-			<scope>provided</scope>
+			<version>1.6.3</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct-processor</artifactId>
-			<version>1.5.2.Final</version>
+			<version>1.6.3</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- openfeign-->
+		
+		<!-- OpenFeign-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
@@ -59,18 +60,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
+		
+		<!-- SUPPRIMÉ: spring-boot-starter-data-rest pour éviter les conflits -->
+		<!-- Si vous avez besoin de Spring Data REST, renommez votre ProfileController -->
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-consul-discovery</artifactId>
@@ -81,18 +84,29 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.24</version> <!-- Assurez-vous que c'est la dernière version -->
+			<version>1.18.36</version>
+			<optional>true</optional>
+		</dependency>
+		
+		<!-- Lombok MapStruct Binding pour compatibilité -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok-mapstruct-binding</artifactId>
+			<version>0.2.0</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -110,11 +124,27 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
 				<configuration>
+					<source>21</source>
+					<target>21</target>
 					<annotationProcessorPaths>
+						<!-- IMPORTANT: Lombok DOIT être avant MapStruct -->
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
+							<version>1.18.36</version>
+						</path>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>1.6.3</version>
+						</path>
+						<!-- Binding pour que MapStruct et Lombok travaillent ensemble -->
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok-mapstruct-binding</artifactId>
+							<version>0.2.0</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
