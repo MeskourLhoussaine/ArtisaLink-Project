@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://i.ibb.co/gFZGbV3/L.png" alt="ArtisaLink logo" width="200" height="auto" />
+
   
 ![](https://img.shields.io/badge/MESKOUR-LHOUSSAINE-blue)
 
