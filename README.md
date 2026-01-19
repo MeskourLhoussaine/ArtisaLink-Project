@@ -15,7 +15,4 @@
 - **Base de données** : PostgreSQL  
 - **Autres** : JWT pour l’authentification, RESTful APIs, Docker (optionnel pour déploiement)  
 
-## Installation et démarrage
-1. **Cloner le dépôt**
-```bash
-git clone https://github.com/ton-utilisateur/ArtisaLink.git
+
