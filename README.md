@@ -1,18 +1,18 @@
-# ArtisaLink
+<div align="center">
+<img src="https://i.ibb.co/gFZGbV3/Logopng.png" alt="ArtisaLink logo" width="200" height="auto" />
+  
+![](https://img.shields.io/badge/MESKOUR-LHOUSSAINE-blue)
 
-**ArtisaLink** est une plateforme web innovante visant à connecter les artisans et les employeurs au Maroc, facilitant la mise en relation pour des opportunités de travail. Le projet permet aux artisans de publier leurs services, tandis que les employeurs peuvent parcourir les profils et trouver le talent adapté à leurs besoins.  
+  <h1>ArtisaLink</h1>
+  <h1>(platform for artisans)</h1>
+</div>
 
-## Fonctionnalités principales
-- **Inscription et gestion des profils** : Artisans et employeurs peuvent créer et gérer leurs comptes et profils détaillés.  
-- **Publication et recherche d’offres** : Les artisans publient leurs services, et les employeurs recherchent facilement des compétences spécifiques.  
-- **Système de messagerie interne** : Communication sécurisée entre artisans et employeurs pour organiser les missions.  
-- **Interface multilingue** : Support des langues arabe, français et anglais pour une expérience utilisateur optimale.  
-- **Tableau de bord analytique** : Suivi des offres publiées et des interactions pour les utilisateurs.  
+[//]: # (About the Project)
+## :star2: About the Project
 
-## Technologies utilisées
-- **Frontend** : Angular, Tailwind CSS  
-- **Backend** : Java, Spring Boot, Spring Security, Spring Data JPA  
-- **Base de données** : PostgreSQL  
-- **Autres** : JWT pour l’authentification, RESTful APIs, Docker (optionnel pour déploiement)  
+**ArtisaLink** is an innovative web platform designed to connect artisans and employers in Morocco. Artisans can post their services, while employers can browse profiles and find the right talent. The platform simplifies the matching process, providing secure communication, analytics, and a multilingual interface (Arabic, French, English).
 
+## :computer: Technologies Used
 
+ArtisaLink is built using **Java, Spring Boot, Angular, Tailwind CSS, and PostgreSQL**.  
+It uses **JWT** for authentication, **RESTful APIs** for backend communication, and optionally **Docker** for deployment.
