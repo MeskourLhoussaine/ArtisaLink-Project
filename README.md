@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://i.ibb.co/gFZGbV3/Logopng.png" alt="ArtisaLink logo" width="200" height="auto" />
+
   
 ![](https://img.shields.io/badge/MESKOUR-LHOUSSAINE-blue)
 
@@ -16,10 +16,11 @@
 - **Système de messagerie interne** : Communication sécurisée entre artisans et employeurs pour organiser les missions.  
 - **Interface multilingue** : Support des langues arabe, français et anglais pour une expérience utilisateur optimale.  
 - **Tableau de bord analytique** : Suivi des offres publiées et des interactions pour les utilisateurs.  
+
+## Technologies utilisées 
 ![](https://img.shields.io/badge/Java-SpringBoot-red)
 ![](https://img.shields.io/badge/Angular-Frontend-orange)
 ![](https://img.shields.io/badge/PostgreSQL-Database-blue)
-## Technologies utilisées
 - **Frontend** : Angular, Tailwind CSS  
 - **Backend** : Java, Spring Boot, Spring Security, Spring Data JPA  
 - **Base de données** : PostgreSQL  
